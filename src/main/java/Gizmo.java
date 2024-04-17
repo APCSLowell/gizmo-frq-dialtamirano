@@ -1,33 +1,38 @@
-public class Gizmo
+import java.util.ArrayList;
+
+public class Digits
 {
-  private String maker;
-  private boolean isElec;
-  
-  /** Returns the name of the manufacturer of this Gizmo. */
-  public String getMaker()
-  {
-    return maker;
-  }
-  /** Returns true if this Gizmo is electronic, and false
-  * otherwise.
-  */
-  public boolean isElectronic()
-  {
-    return isElec;
-  }
-  /** Returns true if this Gizmo is equivalent to the Gizmo
-  * object represented by the
-  * parameter, and false otherwise.
-  */
-  public boolean equals(Object other)
-  {
-    boolean sameMaker = maker.equals(((Gizmo)other).getMaker());
-    boolean bothElec = isElec == ((Gizmo)other).isElectronic();
-    return sameMaker && bothElec;
-  }
-  public Gizmo(String s, boolean e)
-  {
-    maker = s;
-    isElec = e;
-  }
+
+	private ArrayList<Integer> digitList;
+
+	public Digits(int num)
+	{ 
+		digitList = new ArrayList <Integer>();
+		if(num == 0){
+			digitList.add(0);
+		}
+		int n = num;
+		while(num > 0 ){
+			digitList.add(0, n%10);
+			n = n%10;
+		}
+	    
+	}
+
+	public boolean isStrictlyIncreasing()
+	{ 
+		for(int i = 1; i < digitList.size(); i++){
+			if(digitList.get(i) > digitList.get(i-1)){
+				return true;
+		// for(int i = 0; i < didgitList.size()-1; i++){
+		// 	if(digitList.get(i+1) <= digitList.get(i)){
+		// 		return false;
+			}
+		}
+		return false;
+	}
+	public String toString()
+	{
+		return digitList.toString();
+	}
 }
