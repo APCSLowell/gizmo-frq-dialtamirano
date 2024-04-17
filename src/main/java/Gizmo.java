@@ -1,33 +1,43 @@
-public class Gizmo
+import java.util.ArrayList;
+public class OnlinePurchaseManager
 {
-  private String maker;
-  private boolean isElec;
+  /** An ArrayList of purchased Gizmo objects,
+  * instantiated in the constructor.
+  */
+  private ArrayList<Gizmo> purchases;
   
-  /** Returns the name of the manufacturer of this Gizmo. */
-  public String getMaker()
-  {
-    return maker;
-  }
-  /** Returns true if this Gizmo is electronic, and false
-  * otherwise.
+  /** Returns the number of purchased Gizmo objects that are electronic
+  * whose manufacturer is maker, as described in part (a).
   */
-  public boolean isElectronic()
+  public int countElectronicsByMaker(String maker)
   {
-    return isElec;
+    int count = 0; 
+    for (int i = 0; i<purchases.size(); i++){
+      if(purchases.get(i).isElectronic() && purchases.get(i).getMaker().equals(maker)){
+        count = count + 1;
+      }
+    }
+    return count;
   }
-  /** Returns true if this Gizmo is equivalent to the Gizmo
-  * object represented by the
-  * parameter, and false otherwise.
+  
+  /** Returns true if any pair of adjacent purchased Gizmo objects are
+  * equivalent, and false otherwise, as described in part (b).
   */
-  public boolean equals(Object other)
+  public boolean hasAdjacentEqualPair()
   {
-    boolean sameMaker = maker.equals(((Gizmo)other).getMaker());
-    boolean bothElec = isElec == ((Gizmo)other).isElectronic();
-    return sameMaker && bothElec;
+    for(int i = 0; i < purchases.size()-1; i++){
+      if(purchases.get(i).equals(purchases.get(i+1))){
+        return true;
+      }
+    }
+    return false;
   }
-  public Gizmo(String s, boolean e)
+  public OnlinePurchaseManager()
   {
-    maker = s;
-    isElec = e;
+    purchases = new ArrayList <Gizmo>();
+  }
+  public void add(Gizmo g)
+  {
+    purchases.add(g);
   }
 }
