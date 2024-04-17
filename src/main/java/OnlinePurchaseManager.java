@@ -1,32 +1,38 @@
 import java.util.ArrayList;
-public class OnlinePurchaseManager
+
+public class Digits
 {
-  /** An ArrayList of purchased Gizmo objects,
-  * instantiated in the constructor.
-  */
-  private ArrayList<Gizmo> purchases;
-  
-  /** Returns the number of purchased Gizmo objects that are electronic
-  * whose manufacturer is maker, as described in part (a).
-  */
-  public int countElectronicsByMaker(String maker)
-  {
-    /* to be implemented in part (a) */
-  }
-  
-  /** Returns true if any pair of adjacent purchased Gizmo objects are
-  * equivalent, and false otherwise, as described in part (b).
-  */
-  public boolean hasAdjacentEqualPair()
-  {
-    /* to be implemented in part (b) */
-  }
-  public OnlinePurchaseManager()
-  {
-    purchases = new ArrayList <Gizmo>();
-  }
-  public void add(Gizmo g)
-  {
-    purchases.add(g);
-  }
+
+	private ArrayList<Integer> digitList;
+
+	public Digits(int num)
+	{ 
+		digitList = new ArrayList <Integer>();
+		if(num == 0){
+			digitList.add(0);
+		}
+		int n = num;
+		while(num > 0 ){
+			digitList.add(0, n%10);
+			n = n%10;
+		}
+	    
+	}
+
+	public boolean isStrictlyIncreasing()
+	{ 
+		for(int i = 1; i < digitList.size(); i++){
+			if(digitList.get(i) > digitList.get(i-1)){
+				return true;
+		// for(int i = 0; i < didgitList.size()-1; i++){
+		// 	if(digitList.get(i+1) <= digitList.get(i)){
+		// 		return false;
+			}
+		}
+		return false;
+	}
+	public String toString()
+	{
+		return digitList.toString();
+	}
 }
